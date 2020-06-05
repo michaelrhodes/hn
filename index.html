@@ -1,0 +1,145 @@
+<!doctype html>
+<meta name="viewport" content="width=device-width">
+<title>Hacker News</title>
+<style>
+  main {
+    display: block;
+    font: 400 12px/1.425 Verdana, 'DejaVu Sans', 'Bitstream Vera Sans', sans-serif;
+    margin: 0 auto;
+    max-width: 640px;
+    padding: 2em 1em 2.25em;
+    transition: opacity 350ms ease;
+  }
+  main[data-is-loading] {
+    opacity: 0.25;
+  }
+  h1 {
+    margin-bottom: 2em;
+  }
+  h2 {
+    font-size: 1.25em;
+    margin-bottom: 0.25em;
+  }
+  a[href^="#"] {
+    color: blue;
+  }
+  .items {
+    counter-reset: item 0;
+    list-style: none;
+    padding: 0;
+  }
+  .items > li {
+    position: relative;
+  }
+  .items > li:before {
+    color: #444;
+    content: counter(item);
+    counter-increment: item;
+    font-size: 0.875em;
+    font-weight: normal;
+    right: 100%;
+    line-height: 1;
+    margin-right: 1.125em;
+    position: absolute;
+    top: 5px;
+  }
+  .next {
+    display: inline-block;
+    margin-top: 1.25em;
+  }
+  .item h1 {
+    margin-bottom: 0.25em;
+  }
+  .item > .comments {
+    margin-top: 1.5em;
+  }
+  .comments {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .replies {
+    padding-left: 1em;
+  }
+  .comment {
+    border-top: 1px solid #ddd;
+    padding-top: 1em;
+  }
+  .comment + .comment,
+  .comment > .replies {
+    margin-top: 1em;
+  }
+  .comment p {
+    margin: 0;
+  }
+  .comment p + p {
+    margin-top: 0.75em;
+  }
+  .comment a {
+    word-break: break-all;
+  }
+  .comment pre {
+    -webkit-overflow-scrolling: touch;
+    overflow: auto;
+  }
+  .comment > .meta {
+    color: #888;
+    margin: 0 0 0.5em;
+  }
+  .replies-toggle {
+    -webkit-appearance: none;
+    background-color: #f0f0f0;
+    border: none;
+    border-radius: 0;
+    color: #888;
+    cursor: pointer;
+    display: inline-block;
+    font: inherit;
+    height: auto;
+    margin: 0.75em 0 0;
+    padding: 3px 8px;
+    width: auto;
+  }
+  .replies-toggle[data-count="0"] {
+    display: none;
+  }
+  .replies-toggle[data-count]:before {
+    content: attr(data-count);
+  }
+  .replies-toggle[data-count]:after {
+    content: ' replies';
+  }
+  .replies-toggle + .replies,
+  .replies-toggle:checked + .replies .replies-toggle {
+    display: none;
+  }
+  .replies-toggle:checked + .replies,
+  .replies-toggle:checked + .replies .replies {
+    display: block;
+  }
+  @media (max-width: 768px) {
+    main {
+      padding-top: 1em;
+    }
+    h1 {
+      margin-bottom: 1.5em;
+    }
+    .items > li + li {
+      margin-top: 1em;
+    }
+    .items > li:before {
+      color: #666;
+      display: inline-block;
+      font-size: 0.75em;
+      margin-right: 0;
+      position: static;
+      line-height: 1;
+    }
+    .items > li > h2 {
+      margin-top: 0.125em;
+    }
+  }
+</style>
+<body>
+  <script src="bundle.js"></script>
+</body>
