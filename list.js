@@ -24,8 +24,6 @@ var list = define(template, {
   items: bind.children('.items')
 })
 
-refine(list, {
-  items: v => items(v)
-})
+refine(list, { items })
 
 module.exports = list()
