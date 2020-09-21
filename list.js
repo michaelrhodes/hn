@@ -2,7 +2,7 @@ var mkdom = require('mkdom')
 var define = require('view/define')
 var refine = require('view/refine')
 var bind = require('view/bind')
-var pool = require('./view-pool')
+var pool = require('view/pool')
 var item = require('./list-item')
 var items = pool(item, 30)
 
@@ -25,7 +25,7 @@ var list = define(template, {
 })
 
 refine(list, {
-  items: v => v.map(items)
+  items: v => items(v)
 })
 
 module.exports = list()
