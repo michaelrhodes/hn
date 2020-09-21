@@ -35,7 +35,7 @@ function navigate () {
   else if (type === 'item') {
     hn.item(id, function (err, details) {
       if (err) return alert(err)
-      main.view = item.reset(details)
+      main.view = item.set(details)
       main.loading = false
       scrollTo(0, 0)
     })
