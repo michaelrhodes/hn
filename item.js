@@ -2,7 +2,7 @@ var mkdom = require('mkdom')
 var define = require('view/define')
 var refine = require('view/refine')
 var bind = require('view/bind')
-var comment = require('./item-comment.js')
+var comment = require('./item-comment')
 var internal = /^item\?id=([0-9]+)$/
 
 var template = mkdom(`
