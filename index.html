@@ -97,15 +97,15 @@
     border-radius: 0;
     color: #888;
     cursor: pointer;
-    display: inline-block;
+    display: none;
     font: inherit;
     height: auto;
     margin: 0.75em 0 0;
     padding: 3px 8px;
     width: auto;
   }
-  .replies-toggle[data-count="0"] {
-    display: none;
+  .replies-toggle[data-count] {
+    display: inline-block;
   }
   .replies-toggle[data-count]:before {
     content: attr(data-count);
