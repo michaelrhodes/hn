@@ -1,5 +1,6 @@
 var mkdom = require('mkdom')
 var define = require('view/define')
+var refine = require('view/refine')
 var bind = require('view/bind')
 var item = require('./list-item')
 
@@ -11,12 +12,18 @@ var template = mkdom(`
   </section>
 `)
 
-module.exports = define(template, {
+var list = define(template, {
   page: bind.combine([
-    bind.text('h1', num => num > 1 ? null : 'Hacker News'),
-    bind.attr('.items', 'style', num => `counter-reset: item ${(num - 1) * 30}`),
-    bind.text('a', num => `Page ${num + 1}`),
-    bind.attr('a', 'href', num => `#/page/${num + 1}`)
+    bind.text('h1', v => v > 1 ? null : 'Hacker News'),
+    bind.attr('.items', 'style', v => `counter-reset: item ${(v - 1) * 30}`),
+    bind.text('a', v => `Page ${v + 1}`),
+    bind.attr('a', 'href', v => `#/page/${v + 1}`)
   ]),
-  items: bind.subviews('.items', item)
-})()
+  items: bind.children('.items')
+})
+
+refine(list, {
+  items: v => v.map(item)
+})
+
+module.exports = list()

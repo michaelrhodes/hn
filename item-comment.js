@@ -1,6 +1,6 @@
 var mkdom = require('mkdom')
-var transform = require('view/transform')
 var define = require('view/define')
+var refine = require('view/refine')
 var bind = require('view/bind')
 
 var template = mkdom(`
@@ -20,22 +20,20 @@ var comment = define(template, {
   user: bind.text('.user'),
   time_ago: bind.text('.meta time'),
   time: bind.combine([
-    bind.attr('.meta time', 'datetime', time => new Date(time * 1000).toISOString()),
-    bind.attr('.meta time', 'title', time => new Date(time * 1000).toLocaleString())
+    bind.attr('.meta time', 'datetime', v => v.toISOString()),
+    bind.attr('.meta time', 'title', v => v.toLocaleString())
   ]),
-  comments: bind.children('.replies'),
   comments_count: bind.combine([
-    bind.attr('.replies-toggle', 'data-count'),
-    hide_replies
-  ])
+    bind.attr('.replies-toggle', 'data-count'), function () {
+      this.get('.replies-toggle').checked = false
+    }
+  ]),
+  comments: bind.children('.replies')
 })
 
-transform(comment, {
-  comments: cs => cs.length ? cs.map(c => comment(c)) : null
+refine(comment, {
+  time: v => new Date(v * 1000),
+  comments: v => v.map(comment)
 })
 
 module.exports = comment
-
-function hide_replies () {
-  this.get('.replies-toggle').checked = false
-}
