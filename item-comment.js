@@ -6,7 +6,7 @@ var bind = require('view/bind')
 var template = mkdom(`
   <li class="comment">
     <p class="meta">
-      <span class="user"></span>
+      <span class="user"></span> 
       <time></time>
     </p>
     <div class="content"></div>

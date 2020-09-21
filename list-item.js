@@ -8,8 +8,8 @@ var template = mkdom(`
     <h2 class="title">
       <a rel="noopener noreferrer"></a>
     </h2>
-    <a class="comments"></a>
-    by <span class="user"></span>
+    <a class="comments"></a> by 
+    <span class="user"></span> 
     <time></time>
   </li>
 `)

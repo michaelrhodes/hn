@@ -12,7 +12,11 @@ var template = mkdom(`
       <span class="domain"></span>
     </a>
     <p class="content"></p>
-    <p class="meta">submitted by <span class="user"></span> <time></time></p>
+    <p class="meta">
+      submitted by 
+      <span class="user"></span> 
+      <time></time>
+    </p>
     <ul class="comments"></ul>
   </article>
 `)
