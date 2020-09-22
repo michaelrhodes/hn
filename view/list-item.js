@@ -17,13 +17,13 @@ var template = mkdom(`
 module.exports = define(template, {
   id: bind.attr('.comments', 'href', v => `#/item/${v}`),
   title: bind.text('h2 a'),
-  url: bind.combine([
+  url: bind.many([
     bind.attr('h2 a', 'target', v => v[0] !== '#' && '_blank'),
     bind.attr('h2 a', 'href')
   ]),
   user: bind.text('.user'),
   time_ago: bind.text('time'),
-  time: bind.combine([
+  time: bind.many([
     bind.attr('time', 'datetime', v => v.toISOString()),
     bind.attr('time', 'title', v => v.toLocaleString())
   ]),

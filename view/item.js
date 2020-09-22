@@ -28,7 +28,7 @@ var item = define(template, {
   domain: bind.text('.domain'),
   user: bind.text('.user'),
   time_ago: bind.text('.meta time'),
-  time: bind.combine([
+  time: bind.many([
     bind.attr('.meta time', 'datetime', v => v.toISOString()),
     bind.attr('.meta time', 'title', v => v.toLocaleString())
   ]),

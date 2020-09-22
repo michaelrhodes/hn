@@ -19,11 +19,11 @@ var comment = define(template, {
   content: bind.html('.content'),
   user: bind.text('.user'),
   time_ago: bind.text('.meta time'),
-  time: bind.combine([
+  time: bind.many([
     bind.attr('.meta time', 'datetime', v => v.toISOString()),
     bind.attr('.meta time', 'title', v => v.toLocaleString())
   ]),
-  comments_count: bind.combine([
+  comments_count: bind.many([
     bind.attr('.replies-toggle', 'data-count'), function () {
       this.get('.replies-toggle').checked = false
     }

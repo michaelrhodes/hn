@@ -15,7 +15,7 @@ var template = mkdom(`
 `)
 
 var list = define(template, {
-  page: bind.combine([
+  page: bind.many([
     bind.text('h1', v => v > 1 ? null : 'Hacker News'),
     bind.attr('.items', 'style', v => `counter-reset: item ${(v - 1) * 30}`),
     bind.text('a', v => `Page ${v + 1}`),
