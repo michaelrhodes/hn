@@ -6,14 +6,9 @@
     "view": "github:michaelrhodes/view#simple"
   },
   "devDependencies": {
-    "browser-pack-flat": "^3.4.2",
-    "browserify": "^16.3.0",
-    "common-shakeify": "^0.6.2",
-    "es5.3": "github:michaelrhodes/es#5.3",
-    "uglify-js": "^3.6.0",
-    "uglifyify": "^5.0.2"
+    "bundle": "github:michaelrhodes/bundle#6.1.0"
   },
   "scripts": {
-    "bundle": "browserify index.js -g es5.3 -g uglifyify -p common-shakeify -p browser-pack-flat/plugin | uglifyjs -cm > bundle.js"
+    "bundle": "bundle index | bin/minhtml > bundle"
   }
 }

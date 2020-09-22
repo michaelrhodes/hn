@@ -1,7 +1,7 @@
-var main = require('./main')
-var list = require('./list')
-var item = require('./item')
-var hn = require('./hn')
+var main = require('./view/main')
+var list = require('./view/list')
+var item = require('./view/item')
+var hn = require('./api')
 var y = 0
 
 ;(onscroll = track)()

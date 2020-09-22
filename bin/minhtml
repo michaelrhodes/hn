@@ -1,0 +1,14 @@
+#!/usr/bin/env node
+
+var b, bundle = ''
+
+process.stdin.on('readable', function () {
+  while ((b = process.stdin.read()) !== null) bundle += b
+})
+
+process.stdin.on('end', function () {
+  process.stdout.write(bundle
+    .replace(/\\n\s*/g, '')
+    .replace(/\s{2,}/g, ' ')
+    .replace(/>\s+</g, '> <'))
+})
