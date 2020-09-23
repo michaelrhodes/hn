@@ -2,6 +2,8 @@ var mkdom = require('mkdom')
 var define = require('view/define')
 var refine = require('view/refine')
 var bind = require('view/bind')
+var rewrite = require('./util/rewrite-internal-url')
+var convert = require('./util/convert-time-to-date')
 
 var template = mkdom(`
   <li>
@@ -31,5 +33,6 @@ module.exports = define(template, {
 })
 
 refine(module.exports, {
-  time: v => new Date(v * 1000)
+  url: rewrite,
+  time: convert
 })

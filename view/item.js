@@ -3,7 +3,8 @@ var define = require('view/define')
 var refine = require('view/refine')
 var bind = require('view/bind')
 var comment = require('./item-comment')
-var internal = /^item\?id=([0-9]+)$/
+var rewrite = require('./util/rewrite-internal-url')
+var convert = require('./util/convert-time-to-date')
 
 var template = mkdom(`
   <article class="item">
@@ -36,8 +37,8 @@ var item = define(template, {
 })
 
 refine(item, {
-  url: v => internal.test(v) ? `#/item/${v.match(internal)[1]}` : v,
-  time: v => new Date(v * 1000),
+  url: rewrite,
+  time: convert,
   comments: v => v.map(comment)
 })
 

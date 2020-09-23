@@ -2,6 +2,7 @@ var mkdom = require('mkdom')
 var define = require('view/define')
 var refine = require('view/refine')
 var bind = require('view/bind')
+var convert = require('./util/convert-time-to-date')
 
 var template = mkdom(`
   <li class="comment">
@@ -32,7 +33,7 @@ var comment = define(template, {
 })
 
 refine(comment, {
-  time: v => new Date(v * 1000),
+  time: convert,
   comments: v => v.map(comment)
 })
 
