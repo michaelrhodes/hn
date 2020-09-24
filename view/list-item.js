@@ -2,8 +2,8 @@ var mkdom = require('mkdom')
 var define = require('view/define')
 var refine = require('view/refine')
 var bind = require('view/bind')
-var rewrite = require('./util/rewrite-internal-url')
 var convert = require('./util/convert-time-to-date')
+var rewrite = require('./util/rewrite-internal-url')
 
 var template = mkdom(`
   <li>
