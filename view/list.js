@@ -1,8 +1,7 @@
 var mkdom = require('mkdom')
-var define = require('view/define')
-var refine = require('view/refine')
 var bind = require('view/bind')
 var pool = require('view/pool')
+var define = require('view/define')
 var item = require('./list-item')
 var items = pool(item, 30)
 
@@ -14,16 +13,12 @@ var template = mkdom(`
   </section>
 `)
 
-var list = define(template, {
+module.exports = define(template, {
   page: bind.many([
     bind.text('h1', v => v > 1 ? null : 'Hacker News'),
     bind.attr('.items', 'style', v => `counter-reset: item ${(v - 1) * 30}`),
     bind.text('a', v => `Page ${v + 1}`),
     bind.attr('a', 'href', v => `#/page/${v + 1}`)
   ]),
-  items: bind.children('.items')
-})
-
-refine(list, { items })
-
-module.exports = list()
+  items: bind.children('.items', items)
+})()

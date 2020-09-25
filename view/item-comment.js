@@ -1,40 +1,33 @@
 var mkdom = require('mkdom')
-var define = require('view/define')
-var refine = require('view/refine')
 var bind = require('view/bind')
+var define = require('view/define')
 var convert = require('./util/convert-time-to-date')
+var comments = v => v.length ? v.map(module.exports) : null
 
 var template = mkdom(`
   <li class="comment">
     <p class="meta">
-      <span class="user"></span> 
+      <embed class="user">
       <time></time>
     </p>
-    <div class="content"></div>
+    <embed class="content">
     <input class="replies-toggle" type="checkbox">
     <ul class="replies comments"></ul>
   </li>
 `)
 
-var comment = define(template, {
-  content: bind.html('.content'),
-  user: bind.text('.user'),
+module.exports = define(template, {
+  user: bind.slot('.user'),
+  content: bind.slot('.content', mkdom),
   time_ago: bind.text('.meta time'),
-  time: bind.many([
+  time: bind.many(convert, [
     bind.attr('.meta time', 'datetime', v => v.toISOString()),
     bind.attr('.meta time', 'title', v => v.toLocaleString())
   ]),
-  comments_count: bind.many([
-    bind.attr('.replies-toggle', 'data-count'), function () {
-      this.get('.replies-toggle').checked = false
-    }
+  comments_count: bind.many(v => v || null, [
+    bind.attr('.replies-toggle', 'checked', v => false),
+    bind.attr('.replies-toggle', 'data-count'),
+    bind.visibility('.replies-toggle')
   ]),
-  comments: bind.children('.replies')
+  comments: bind.children('.replies', comments)
 })
-
-refine(comment, {
-  time: convert,
-  comments: v => v.map(comment)
-})
-
-module.exports = comment
