@@ -6,12 +6,8 @@ var rewrite = require('./util/rewrite-internal-url')
 
 var template = mkdom(`
   <li>
-    <a rel="noopener noreferrer">
-      <h2></h2>
-    </a>
-    <a class="comments"></a> by
-    <embed class="user">
-    <time></time>
+    <a rel="noopener noreferrer"><h2></h2></a>
+    <a class="comments"></a> by <embed class="user"> <time></time>
   </li>
 `)
 

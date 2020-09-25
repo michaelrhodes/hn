@@ -13,9 +13,7 @@ var template = mkdom(`
       <embed class="domain">
     </a>
     <embed class="content">
-    <p class="meta">
-      submitted by <embed class="user"> <time></time>
-    </p>
+    <p class="meta">submitted by <embed class="user"> <time></time></p>
     <ul class="comments"></ul>
   </article>
 `)

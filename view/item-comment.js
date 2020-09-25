@@ -6,10 +6,7 @@ var comments = v => v.length ? v.map(module.exports) : null
 
 var template = mkdom(`
   <li class="comment">
-    <p class="meta">
-      <embed class="user">
-      <time></time>
-    </p>
+    <p class="meta"><embed class="user"> <time></time></p>
     <embed class="content">
     <input class="replies-toggle" type="checkbox">
     <ul class="replies comments"></ul>
