@@ -1,3 +1,8 @@
-node_modules/*
-package-lock.json
-bundle.js
+*
+!api.js
+!bundle.js
+!index.js
+!index.html
+!package.json
+!readme.md
+!view/*

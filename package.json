@@ -9,6 +9,7 @@
     "bundle": "github:michaelrhodes/bundle#6.1.0"
   },
   "scripts": {
-    "bundle": "bundle index | bin/minhtml > bundle"
+    "bundle": "node bundle",
+    "wzrd": "wzrd index:script"
   }
 }
