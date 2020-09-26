@@ -21,4 +21,4 @@ module.exports = define(template, {
     bind.attr('a', 'href', v => `#/page/${v + 1}`)
   ]),
   items: bind.children('.items', items)
-})()
+})

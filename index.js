@@ -1,11 +1,11 @@
-var main = require('./view/main')
-var list = require('./view/list')
-var item = require('./view/item')
 var hn = require('./api')
+var item = require('./view/item')()
+var list = require('./view/list')()
+var main = require('./view/main')()
 var y = 0
 
-;(onscroll = track)()
-;(onhashchange = navigate)()
+!(onscroll = track)()
+!(onhashchange = navigate)()
 history.scrollRestoration = 'manual'
 document.body.appendChild(main.el)
 
@@ -21,14 +21,19 @@ function navigate () {
   main.loading = true
 
   if (type === 'page') {
-    var paging = main.view === list
-
     hn.news(id, function (err, items) {
       if (err) return alert(err)
-      list.page = Number(id)
+
+      // Are we navigating between pages?
+      var paging = main.view === list
+
+      list.page = +id
       list.items = items
       main.view = list
       main.loading = false
+
+      // Restore scroll position when
+      // navigating back from item
       scrollTo(0, paging ? 0 : y)
     })
   }

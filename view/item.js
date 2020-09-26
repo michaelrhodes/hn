@@ -30,4 +30,4 @@ module.exports = define(template, {
     bind.attr('.meta time', 'title', v => v.toLocaleString())
   ]),
   comments: bind.children('.comments', comments)
-})()
+})
