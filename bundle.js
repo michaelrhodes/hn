@@ -7,29 +7,29 @@ var define = require('view/define')
 var html = fs.readFileSync('index.html', 'utf8')
 var tmpl = mkdom(html)
 var page = define(tmpl, {
-  bundle: bind.many([
+  script: bind.many([
     bind.attr('script', 'src', v => null),
     bind.text('script')
   ])
 }, {})
 
-var b
-var bundle = ''
-var bundler = './node_modules/.bin/bundle'
-var task = child.spawn(bundler, ['index'], {
+var s
+var script = ''
+var bundle = './node_modules/.bin/bundle'
+var bundler = child.spawn(bundle, ['index'], {
   cwd: process.cwd(),
   env: process.env,
   stdio: ['ipc']
 })
 
-task.stdout.on('readable', function () {
-  while ((b = task.stdout.read()) !== null) bundle += b
+bundler.stdout.on('readable', function () {
+  while ((s = bundler.stdout.read()) !== null) script += s
 })
 
-task.stdout.on('end', function () {
-  page.bundle = bundle
+bundler.stdout.on('end', function () {
+  page.script = script
 
-  fs.writeFileSync('bundle.html', page.toString()
+  fs.writeFileSync('hn.html', page.toString()
     .replace(/\\n\s*/g, '')
     .replace(/\s{2,}/g, ' ')
     .replace(/>\s+</g, '> <'))
