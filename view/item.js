@@ -4,7 +4,7 @@ var bind = require('view/bind')
 var convert = require('./util/convert-time-to-date')
 var rewrite = require('./util/rewrite-internal-url')
 var comment = require('./item-comment')
-var comments = v => v.map(comment)
+var comments = v => v.length ? v.map(comment) : null
 
 var template = mkdom(`
   <article class="item">
