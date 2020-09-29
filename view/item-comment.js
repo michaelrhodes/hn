@@ -7,7 +7,7 @@ var comments = v => v.length ? v.map(module.exports) : null
 var template = mkdom(`
   <li class="comment">
     <p class="meta"><embed class="user"> <time></time></p>
-    <embed class="content">
+    <div class="content"></div>
     <input class="replies-toggle" type="checkbox">
     <ul class="replies comments"></ul>
   </li>
@@ -15,7 +15,7 @@ var template = mkdom(`
 
 module.exports = define(template, {
   user: bind.slot('.user'),
-  content: bind.slot('.content', mkdom),
+  content: bind.children('.content', mkdom),
   time_ago: bind.text('.meta time'),
   time: bind.many(convert, [
     bind.attr('.meta time', 'datetime', v => v.toISOString()),
