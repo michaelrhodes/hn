@@ -11,7 +11,7 @@ var page = define(tmpl, {
     bind.attr('script', 'src', v => null),
     bind.text('script')
   ])
-}, {})
+})(tmpl)
 
 var s
 var script = ''
