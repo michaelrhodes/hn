@@ -2,11 +2,12 @@
   "private": true,
   "main": "index.js",
   "dependencies": {
-    "mkdom": "github:michaelrhodes/mkdom#template",
+    "mkdom": "https://pkg.mkr.sx/mkdom/2.0.0.tgz",
     "view": "github:michaelrhodes/view#simple"
   },
   "devDependencies": {
-    "bundle": "github:michaelrhodes/bundle#6.1.0"
+    "bundle": "github:michaelrhodes/bundle#6.1.0",
+    "domino": "^2.1.6"
   },
   "scripts": {
     "bundle": "node bundle",

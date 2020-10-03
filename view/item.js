@@ -1,4 +1,4 @@
-var mkdom = require('mkdom')
+var mkdom = require('mkdom/core')
 var define = require('view/define')
 var bind = require('view/bind')
 var convert = require('./util/convert-time-to-date')

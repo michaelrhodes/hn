@@ -1,4 +1,4 @@
-var mkdom = require('mkdom')
+var mkdom = require('mkdom/core')
 var bind = require('view/bind')
 var pool = require('view/pool')
 var define = require('view/define')
