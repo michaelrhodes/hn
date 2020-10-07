@@ -13,7 +13,7 @@ var template = mkdom(`
 
 module.exports = define(template, {
   id: bind.attr('.comments', 'href', v => `#/item/${v}`),
-  title: bind.text('h2'),
+  title: bind.html('h2'),
   url: bind.many(rewrite, [
     bind.attr('a', 'target', v => v[0] !== '#' && '_blank'),
     bind.attr('a', 'href')

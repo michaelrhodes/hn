@@ -19,7 +19,7 @@ var item = mkdom(`
 `)
 
 module.exports = define(item, {
-  title: bind.text('h1'),
+  title: bind.html('h1'),
   url: bind.attr('a', 'href', rewrite),
   content: bind.slot('.content', mkdom),
   domain: bind.slot('.domain'),
