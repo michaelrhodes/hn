@@ -8,10 +8,8 @@ var comments = v => v.length ? v.map(comment) : null
 
 var item = mkdom(`
   <article class="item">
-    <a rel="noopener noreferrer" target="_blank">
-      <h1></h1>
-      <embed class="domain">
-    </a>
+    <h1><a rel="noopener noreferrer" target="_blank"></a></h1>
+    <a rel="noopener noreferrer" target="_blank"></a>
     <embed class="content">
     <p class="meta">submitted by <embed class="user"> <time></time></p>
     <ul class="comments"></ul>
@@ -19,10 +17,13 @@ var item = mkdom(`
 `)
 
 module.exports = define(item, {
-  title: bind.html('h1'),
-  url: bind.attr('a', 'href', rewrite),
+  url: bind.many(rewrite, [
+    bind.attr('h1 > a', 'href'),
+    bind.attr('article > a', 'href')
+  ]),
+  title: bind.html('h1 > a'),
+  domain: bind.text('article > a'),
   content: bind.slot('.content', mkdom),
-  domain: bind.slot('.domain'),
   user: bind.slot('.user'),
   time_ago: bind.text('.meta time'),
   time: bind.many(convert, [

@@ -6,17 +6,17 @@ var rewrite = require('./util/rewrite-internal-url')
 
 var template = mkdom(`
   <li>
-    <a rel="noopener noreferrer"><h2></h2></a>
-    <a class="comments"></a> by <embed class="user"> <time></time>
+    <h2><a rel="noopener noreferrer"></a></h2>
+    <a></a> by <embed class="user"> <time></time>
   </li>
 `)
 
 module.exports = define(template, {
-  id: bind.attr('.comments', 'href', v => `#/item/${v}`),
-  title: bind.html('h2'),
+  id: bind.attr('li > a', 'href', v => `#/item/${v}`),
+  title: bind.html('h2 > a'),
   url: bind.many(rewrite, [
-    bind.attr('a', 'target', v => v[0] !== '#' && '_blank'),
-    bind.attr('a', 'href')
+    bind.attr('h2 > a', 'target', v => v[0] !== '#' && '_blank'),
+    bind.attr('h2 > a', 'href')
   ]),
   user: bind.slot('.user'),
   time_ago: bind.text('time'),
@@ -24,5 +24,5 @@ module.exports = define(template, {
     bind.attr('time', 'datetime', v => v.toISOString()),
     bind.attr('time', 'title', v => v.toLocaleString())
   ]),
-  comments_count: bind.text('.comments', v => `${v} comment${v === 1 ? '' : 's'}`)
+  comments_count: bind.text('li > a', v => `${v} comment${v === 1 ? '' : 's'}`)
 })
