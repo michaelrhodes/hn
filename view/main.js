@@ -4,7 +4,7 @@ var define = require('view/define')
 
 var main = mkdom('<main>')
 
-module.exports = define(main, {
+module.exports = define({
   loading: bind.attr('data-is-loading'),
   view: bind.children()
 })(main)

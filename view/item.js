@@ -16,7 +16,7 @@ var item = mkdom(`
   </article>
 `)
 
-module.exports = define(item, {
+module.exports = define({
   url: bind.many(rewrite, [
     bind.attr('h1 > a', 'href'),
     bind.attr('article > a', 'href')
