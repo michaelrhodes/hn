@@ -5,13 +5,13 @@ var bind = require('view/bind')
 var define = require('view/define')
 
 var html = fs.readFileSync('index.html', 'utf8')
-var tmpl = mkdom(html)
-var page = define(tmpl, {
+
+var page = define({
   script: bind.many([
     bind.attr('script', 'src', v => null),
     bind.text('script')
   ])
-})(tmpl)
+})(mkdom(html))
 
 var s
 var script = ''
