@@ -32,6 +32,8 @@ function navigate () {
       main.view = list
       main.loading = false
 
+      title(list.page > 1 && ('Page ' + list.page))
+
       // Restore scroll position when
       // navigating back from item
       scrollTo(0, paging ? 0 : y)
@@ -42,11 +44,17 @@ function navigate () {
       if (err) return alert(err)
       main.view = item.set(details)
       main.loading = false
+      title(details.title)
       scrollTo(0, 0)
     })
   }
   else {
     main.view = null
     main.loading = false
+    title(null)
   }
+}
+
+function title (t) {
+  document.title = (t ? (t + ' | ') : '') + 'Hacker News'
 }
