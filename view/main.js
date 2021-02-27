@@ -1,6 +1,6 @@
 var mkdom = require('mkdom/core')
 var bind = require('view/bind')
-var define = require('view/define/core')
+var define = require('view/define')
 
 var main = mkdom('<main>')
 

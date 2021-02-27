@@ -1,7 +1,7 @@
 var mkdom = require('mkdom/core')
 var bind = require('view/bind')
 var pool = require('view/pool')
-var define = require('view/define/core')
+var define = require('view/define')
 var item = require('./list-item')
 var items = pool(item, 30)
 
