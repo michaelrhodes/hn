@@ -1,6 +1,6 @@
 var mkdom = require('mkdom/core')
-var define = require('view/define')
 var bind = require('view/bind')
+var define = require('view/define')
 var convert = require('./util/convert-time-to-date')
 var rewrite = require('./util/rewrite-internal-url')
 var comment = require('./item-comment')
@@ -17,11 +17,14 @@ var item = mkdom(`
 `)
 
 module.exports = define({
+  title: bind.many([
+    bind.html('h1 > a'),
+    bind.visibility('h1')
+  ]),
   url: bind.many(rewrite, [
     bind.attr('h1 > a', 'href'),
     bind.attr('article > a', 'href')
   ]),
-  title: bind.html('h1 > a'),
   domain: bind.text('article > a'),
   content: bind.slot('.content', mkdom),
   user: bind.slot('.user'),

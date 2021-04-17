@@ -3,7 +3,7 @@
   "main": "index.js",
   "dependencies": {
     "mkdom": "https://pkg.mkr.sx/mkdom/2.0.0.tgz",
-    "view": "github:michaelrhodes/view#simple"
+    "view": "https://pkg.mkr.sx/view/simple.tgz"
   },
   "devDependencies": {
     "bundle": "github:michaelrhodes/bundle#6.1.0",

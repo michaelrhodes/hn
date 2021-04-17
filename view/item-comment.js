@@ -2,6 +2,7 @@ var mkdom = require('mkdom/core')
 var bind = require('view/bind')
 var define = require('view/define')
 var convert = require('./util/convert-time-to-date')
+var rewrite = require('./util/rewrite-internal-links')
 var comments = v => v.length ? v.map(module.exports) : null
 
 var template = mkdom(`
@@ -15,7 +16,7 @@ var template = mkdom(`
 
 module.exports = define(template, {
   user: bind.slot('.user'),
-  content: bind.children('.content', mkdom),
+  content: bind.children('.content', rewrite),
   time_ago: bind.text('.meta time'),
   time: bind.many(convert, [
     bind.attr('.meta time', 'datetime', v => v.toISOString()),
