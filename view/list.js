@@ -7,7 +7,7 @@ var items = pool(item, 30)
 
 var list = mkdom(`
   <section>
-    <h1></h1>
+    <h1><a href="#">Hacker News</a></h1>
     <ol class="items"></ol>
     <a class="next"></a>
   </section>
@@ -15,10 +15,9 @@ var list = mkdom(`
 
 module.exports = define({
   page: bind.many([
-    bind.text('h1', v => v > 1 ? null : 'Hacker News'),
     bind.attr('.items', 'style', v => `counter-reset: item ${(v - 1) * 30}`),
-    bind.text('a', v => `Page ${v + 1}`),
-    bind.attr('a', 'href', v => `#/page/${v + 1}`)
+    bind.text('.next', v => `Page ${v + 1}`),
+    bind.attr('.next', 'href', v => `#/page/${v + 1}`)
   ]),
   items: bind.children('.items', items)
 })(list)
