@@ -15,7 +15,7 @@ var list = mkdom(`
 
 module.exports = define({
   page: bind.many([
-    bind.attr('.items', 'style', v => `counter-reset: item ${(v - 1) * 30}`),
+    bind.attr('.items', 'start', v => (v - 1) * 30),
     bind.text('.next', v => `Page ${v + 1}`),
     bind.attr('.next', 'href', v => `#/page/${v + 1}`)
   ]),

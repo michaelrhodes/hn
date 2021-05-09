@@ -28,24 +28,7 @@
     color: blue;
   }
   .items {
-    counter-reset: item 0;
-    list-style: none;
     padding: 0;
-  }
-  .items > li {
-    position: relative;
-  }
-  .items > li:before {
-    color: #444;
-    content: counter(item);
-    counter-increment: item;
-    font-size: 0.875em;
-    font-weight: normal;
-    right: 100%;
-    line-height: 1;
-    margin-right: 1.125em;
-    position: absolute;
-    top: 0.5725em;
   }
   .next {
     display: inline-block;
@@ -128,8 +111,8 @@
     main {
       max-width: 42em;
     }
-    .items > li:before {
-      content: none;
+    .items {
+      list-style: none;
     }
   }
   @media (max-width: 44em) {
