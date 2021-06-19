@@ -2,7 +2,7 @@ var hn = require('./api')
 var item = require('./view/item')
 var list = require('./view/list')
 var main = require('./view/main')
-var y = 0
+var el, y = 0
 
 !(onscroll = track)()
 !(onhashchange = navigate)()
@@ -24,8 +24,7 @@ function navigate () {
     hn.news(id, function (err, items) {
       if (err) return alert(err)
 
-      // Are we navigating between pages?
-      var paging = main.view === list
+      var refreshing = main.view === list
 
       list.page = +id
       list.items = items
@@ -34,12 +33,21 @@ function navigate () {
 
       title(list.page > 1 && ('Page ' + list.page))
 
-      // Restore scroll position when
-      // navigating back from item
-      scrollTo(0, paging ? 0 : y)
+      if (refreshing) {
+        // Reset tab state and scroll position
+        list.get('h1').focus()
+        scrollTo(0, 0)
+      }
+      else {
+        // Restore tab state and scroll position
+        if (el) el.focus()
+        scrollTo(0, y)
+      }
     })
   }
   else if (type === 'item') {
+    el = document.activeElement
+
     hn.item(id, function (err, details) {
       if (err) return alert(err)
       main.view = item.set(details)

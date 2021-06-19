@@ -7,7 +7,7 @@ var items = pool(item, 30)
 
 var list = mkdom(`
   <section>
-    <h1><a href="#">Hacker News</a></h1>
+    <h1 tabindex="-1"><a href="#">Hacker News</a></h1>
     <ol class="items"></ol>
     <a class="next"></a>
   </section>
